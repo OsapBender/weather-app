@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="./static/favicon.ico">
+    <title>Weather</title>
+  <link href="css/app.css" rel="stylesheet"></head>
+  <body>
+    <div class="preloader">
+      <div class="loader"></div>
+    </div>
+    <script>
+       const preloader = document.querySelector('.preloader')
+       window.onload = function() {
+         setTimeout(() => preloader.classList.add('done'), 1000)
+       }
+    </script>
+    <header class="main-header main-header--hidden"></header>
+    <main>
+      <h1 class="visuallyhidden"></h1>
+      <div class="container">
+        <div class="error">
+          <div class="error__wrapper"><span class="error__message">Не удалось получить прогноз погоды, попробуйте перезагрузить сайт.</span></div>
+        </div>
+        <div class="search">
+          <label>
+            <input class="search__input" type="search" placeholder="Найдите свой город...">
+          </label>
+          <div class="search__feed-container">
+            <ul class="search__feed-list"></ul>
+          </div>
+        </div>
+        <div class="main-city card content-wrap content-wrap--top current-city"><img class="card__preview-img" src="" alt="Preview image city">
+          <div class="main-city__forecast-wrapper">
+            <div class="main-city__icon-container"><img class="main-city__svg-icon" src="./static/img/content/svg-icon/001-cloudy.svg" alt="Forecast icon"></div>
+            <div class="main-city__temp-container"><span class="main-city__temp-value temp-value">10C</span></div>
+          </div><a class="card__link" href="#" data-forecast="detailed">
+            <div class="card__title-wrapper main-city__title-wrapper">
+              <h2 class="card__title-city current-city__city city-name">Москва</h2>
+              <h4 class="card__subtitle-country current-city__country">Россия</h4>
+            </div></a>
+        </div>
+        <div class="content-wrap content-wrap--bottom">
+          <div class="forecast">
+            <h3 class="forecast__title">Ближайшие 3 дня</h3>
+            <div class="forecast__container">
+              <div class="forecast__card first-three-days"><a class="forecast__link" href="#">
+                  <div class="forecast__icon-wrap"><img class="forecast__svg-icon" src="./static/img/content/svg-icon/002-rain.svg" alt="Forecast icon"></div>
+                  <div class="forecast__title-wrapper">
+                    <h3 class="forecast__title-weekday-name">Среда</h3>
+                    <h4 class="forecast__subtitle-condition">Дождь</h4>
+                  </div>
+                  <div class="temp-wrap"><span class="temp-value">10С / 12С</span></div></a></div>
+              <div class="forecast__card first-three-days"><a class="forecast__link" href="#">
+                  <div class="forecast__icon-wrap"><img class="forecast__svg-icon" src="./static/img/content/svg-icon/002-rain.svg" alt="Forecast icon"></div>
+                  <div class="forecast__title-wrapper">
+                    <h3 class="forecast__title-weekday-name">Четверг</h3>
+                    <h4 class="forecast__subtitle-condition">Дождь</h4>
+                  </div>
+                  <div class="temp-wrap"><span class="temp-value">26C / 14C</span></div></a></div>
+              <div class="forecast__card first-three-days"><a class="forecast__link" href="#">
+                  <div class="forecast__icon-wrap"><img class="forecast__svg-icon" src="./static/img/content/svg-icon/033-sun.svg" alt="Forecast icon"></div>
+                  <div class="forecast__title-wrapper">
+                    <h3 class="forecast__title-weekday-name">Пятница</h3>
+                    <h4 class="forecast__subtitle-condition">Солнце</h4>
+                  </div>
+                  <div class="temp-wrap"><span class="temp-value">20C / 14C</span></div></a></div>
+            </div>
+          </div>
+          <div class="recomendation">
+            <h3 class="recomendation__title">Рекомендации</h3>
+            <div class="recomendation__container">
+              <div class="city-recomendation city-recomendation--primary">
+                <div class="card"><a class="card__link" href="#"><img class="card__preview-img preview-img preview-img--l" src="./static/img/content/atlanta.jpg" alt="Preview image city">
+                    <div class="card__title-wrapper">
+                      <h2 class="card__title-city">Атланта</h2>
+                      <h4 class="card__subtitle-country">США</h4>
+                    </div></a></div>
+              </div>
+              <div class="city-recomendation city-recomendation--secondary">
+                <div class="card"><a class="card__link" href="#"><img class="card__preview-img preview-img preview-img--s" src="./static/img/content/bari.jpg" alt="Preview image city">
+                    <div class="card__title-wrapper">
+                      <h2 class="card__title-city">Бари</h2>
+                      <h4 class="card__subtitle-country">Италия</h4>
+                    </div></a></div>
+                <div class="card"><a class="card__link" href="#"><img class="card__preview-img preview-img preview-img--m" src="./static/img/content/bangkok.jpg" alt="Preview image city">
+                    <div class="card__title-wrapper">
+                      <h2 class="card__title-city">Бангкок</h2>
+                      <h4 class="card__subtitle-country">Тайланд</h4>
+                    </div></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="other-cities forecast">
+            <ul class="forecast__container">
+              <li class="forecast__card add-city">
+                <div class="forecast__container add-city__wrap">
+                  <button class="forecast__add-city" type="button" name="Add city">Добавить город</button><img class="forecast__city-img" src="./static/img/content/night-city.jpg" alt="City image">
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+<div class="select-city">
+  <div class="select-city__wrapper">
+    <header class="select-city__header">
+      <h2 class="select-city__title">Список городов</h2>
+      <div class="search">
+        <div class="search__wrapper">
+          <label>
+            <input class="search__input" type="search" placeholder="Найдите свой город...">
+          </label>
+          <button class="search__submit" type="button" name="find city">&#128270;</button>
+        </div>
+      </div><span class="select-city__close"></span>
+    </header>
+    <div class="select-city__border-container"><span class="select-city__border-bottom"></span></div>
+    <section class="select-city__content">
+      <ul class="select-city__list-cities"></ul>
+    </section>
+  </div>
+</div>
+<div class="detailed-forecast">
+  <div class="detailed-forecast__wrapper">
+    <header class="detailed-forecast__header">
+      <div class="detailed-forecast__title-wrapper">
+        <h2 class="detailed-forecast__title-container">Суточный прогноз</h2>
+      </div>
+    </header>
+    <div class="detailed-forecast__content-container">
+      <ul class="detailed-forecast__list-item">
+        <li class="detailed-forecast__column"> 
+          <h4 class="detailed-forecast__title">Время</h4>
+          <ul class="detailed-forecast__sublist sublist sublist--time"></ul>
+        </li>
+        <li class="detailed-forecast__column"> 
+          <h4 class="detailed-forecast__title">Температура</h4>
+          <ul class="detailed-forecast__sublist sublist sublist--temp"></ul>
+        </li>
+        <li class="detailed-forecast__column display display--1020-hidden">
+          <h4 class="detailed-forecast__title">Влажность</h4>
+          <ul class="detailed-forecast__sublist sublist sublist--humidity"> </ul>
+        </li>
+        <li class="detailed-forecast__column display display--1020-hidden">
+          <h4 class="detailed-forecast__title">Направление ветра</h4>
+          <ul class="detailed-forecast__sublist sublist sublist--wind-direction"></ul>
+        </li>
+        <li class="detailed-forecast__column display display--550-hidden"> 
+          <h4 class="detailed-forecast__title">Скорость ветра</h4>
+          <ul class="detailed-forecast__sublist sublist sublist--wind-speed"></ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="recomendation-desc">
+  <div class="recomendation-desc__wrapper">
+    <h2 class="recomendation-desc__title"></h2>
+    <p class="recomendation-desc__description"> </p>
+  </div>
+</div>
+    <footer class="main-footer main-footer--hidden"></footer>
+  <script type="text/javascript" src="js/polyfills.js"></script><script type="text/javascript" src="js/app.js"></script></body>
+</html>
